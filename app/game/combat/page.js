@@ -132,7 +132,7 @@ export default function Combat() {
             </div>
           ))}
           {!isCombatOver && (
-            <div className="animate-blink mt-2">> ...</div>
+            <div className="animate-blink mt-2">&gt; ...</div>
           )}
         </div>
         
@@ -142,13 +142,13 @@ export default function Combat() {
               onClick={() => router.push('/game/explore')}
               className="pixel-btn bg-retro-info text-black border-retro-info hover:bg-white text-xs"
             >
-              > CONTINUE <
+              &gt; CONTINUE &lt;
             </button>
             <button 
               onClick={() => router.push('/game/dashboard')}
               className="pixel-btn border-gray-600 text-gray-400 hover:text-white text-xs"
             >
-              > FLEE TO CAMP <
+              &gt; FLEE TO CAMP &lt;
             </button>
           </div>
         )}

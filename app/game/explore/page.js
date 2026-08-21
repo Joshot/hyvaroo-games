@@ -132,7 +132,7 @@ export default function Explore() {
               {'> ' + log}
             </div>
           ))}
-          {actionLog.length === 0 && <div className="text-gray-600 animate-blink">> WAITING FOR INPUT...</div>}
+          {actionLog.length === 0 && <div className="text-gray-600 animate-blink">&gt; WAITING FOR INPUT...</div>}
         </div>
       </div>
     </div>

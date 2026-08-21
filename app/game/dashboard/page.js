@@ -53,7 +53,7 @@ export default function Dashboard() {
           <ul className="list-square ml-5">
             <li>+ {idleReport.exp} EXP</li>
             <li>+ {idleReport.gold} G</li>
-            {idleReport.apReset && <li className="text-retro-success animate-blink mt-2">> AP RESTORED <</li>}
+            {idleReport.apReset && <li className="text-retro-success animate-blink mt-2">&gt; AP RESTORED &lt;</li>}
           </ul>
         </div>
       )}
@@ -146,7 +146,7 @@ export default function Dashboard() {
               href="/game/explore" 
               className="pixel-btn block w-full text-center text-retro-info border-retro-info hover:bg-retro-info hover:text-black py-3 mt-4"
             >
-              > ENTER WILDERNESS (1 AP) <
+              &gt; ENTER WILDERNESS (1 AP) &lt;
             </Link>
           </div>
         </div>
