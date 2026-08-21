@@ -28,8 +28,7 @@ export default function Register() {
       setError(error.message);
       setLoading(false);
     } else {
-      setMessage("Registration successful! Please log in.");
-      // Auto-redirect after short delay could be added here
+      setMessage("REGISTRATION SUCCESSFUL. INITIALIZING...");
       setTimeout(() => {
         router.push('/login');
       }, 2000);
@@ -38,44 +37,44 @@ export default function Register() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="w-full max-w-md p-8 border-2 border-gray-900 bg-white">
-        <h2 className="text-2xl font-bold mb-6 text-center">New Adventurer</h2>
+      <div className="w-full max-w-md pixel-panel p-8">
+        <h2 className="text-2xl font-pixel text-retro-warning mb-6 text-center drop-shadow-md">NEW ADVENTURER</h2>
         
-        {error && <div className="mb-4 p-3 bg-red-100 text-red-700 border border-red-300">{error}</div>}
-        {message && <div className="mb-4 p-3 bg-green-100 text-green-700 border border-green-300">{message}</div>}
+        {error && <div className="mb-4 p-3 bg-red-900/50 text-retro-accent border-2 border-retro-accent font-pixel text-xs">{error}</div>}
+        {message && <div className="mb-4 p-3 bg-green-900/50 text-retro-success border-2 border-retro-success font-pixel text-xs">{message}</div>}
         
-        <form onSubmit={handleRegister} className="space-y-4">
+        <form onSubmit={handleRegister} className="space-y-6">
           <div>
-            <label className="block font-bold mb-1">Email</label>
+            <label className="block font-pixel text-xs mb-2 text-gray-300">EMAIL</label>
             <input 
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              className="w-full p-2 bg-black border-2 border-gray-600 focus:border-retro-warning text-white font-vt323 text-xl outline-none"
               required
             />
           </div>
           <div>
-            <label className="block font-bold mb-1">Password</label>
+            <label className="block font-pixel text-xs mb-2 text-gray-300">PASSWORD</label>
             <input 
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              className="w-full p-2 bg-black border-2 border-gray-600 focus:border-retro-warning text-white font-vt323 text-xl outline-none"
               required
             />
           </div>
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-2 bg-gray-900 text-white font-bold hover:bg-gray-800 disabled:opacity-50"
+            className="pixel-btn w-full text-retro-warning border-retro-warning hover:bg-retro-warning hover:text-black mt-4 disabled:opacity-50"
           >
-            {loading ? 'Registering...' : 'Register Account'}
+            {loading ? 'REGISTERING...' : 'REGISTER ACCOUNT'}
           </button>
         </form>
         
-        <div className="mt-6 text-center text-sm">
-          Already have an account? <Link href="/login" className="font-bold underline hover:text-gray-600">Login here</Link>
+        <div className="mt-8 text-center font-pixel text-xs text-gray-500">
+          ALREADY REGISTERED? <Link href="/login" className="text-retro-info hover:text-white transition-colors">LOGIN</Link>
         </div>
       </div>
     </div>

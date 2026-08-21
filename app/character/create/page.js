@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 
 const CLASSES = [
-  { id: 'warrior', name: 'Warrior', desc: 'Focuses on melee damage & high HP. (+2 Might, +1 Grace)' },
-  { id: 'mage', name: 'Mage', desc: 'Focuses on spell damage, low HP. (+2 Wisdom, +1 Grace)' },
-  { id: 'rogue', name: 'Rogue', desc: 'Focuses on critical hits & evasion. (+2 Grace, +1 Might)' },
-  { id: 'cleric', name: 'Cleric', desc: 'Balanced stats with access to healing. (+1 Might, +1 Wisdom, +1 Grace)' }
+  { id: 'warrior', name: 'WARRIOR', desc: 'Melee damage & high HP. (+2 Might, +1 Grace)', icon: '⚔️' },
+  { id: 'mage', name: 'MAGE', desc: 'Spell damage, low HP. (+2 Wisdom, +1 Grace)', icon: '🔮' },
+  { id: 'rogue', name: 'ROGUE', desc: 'Critical hits & evasion. (+2 Grace, +1 Might)', icon: '🗡️' },
+  { id: 'cleric', name: 'CLERIC', desc: 'Balanced stats & healing. (+1 Might, +1 Wisdom, +1 Grace)', icon: '✨' }
 ];
 
 export default function CreateCharacter() {
@@ -68,46 +68,47 @@ export default function CreateCharacter() {
       ]);
 
     if (error) {
-      alert('Error creating character: ' + error.message);
+      alert('SYS.ERR: ' + error.message);
       setLoading(false);
     } else {
       router.push('/game/dashboard');
     }
   };
 
-  if (authLoading) return <div className="flex min-h-screen items-center justify-center font-mono">Loading...</div>;
+  if (authLoading) return <div className="flex min-h-screen items-center justify-center font-pixel animate-blink text-retro-accent">CONNECTING...</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen font-mono p-4">
-      <div className="w-full max-w-2xl border-2 border-gray-900 bg-white p-8">
-        <h2 className="text-3xl font-bold mb-2">Create Your Adventurer</h2>
-        <p className="mb-6 text-gray-600">Your journey into the Endless Expanse begins here.</p>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <div className="w-full max-w-2xl pixel-panel p-8">
+        <h2 className="text-3xl font-pixel text-retro-success mb-2 drop-shadow-md text-center">CREATE CHARACTER</h2>
+        <p className="mb-6 text-gray-400 font-pixel text-xs text-center border-b-2 border-gray-700 pb-4">YOUR JOURNEY BEGINS HERE.</p>
         
         <form onSubmit={handleCreate} className="space-y-6">
           <div>
-            <label className="block font-bold mb-2 text-lg">Name</label>
+            <label className="block font-pixel text-sm mb-2 text-retro-info">NAME</label>
             <input 
               type="text" 
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none text-lg"
-              placeholder="Enter your name..."
+              className="w-full p-3 bg-black border-2 border-gray-600 focus:border-retro-info text-white font-vt323 text-2xl outline-none"
+              placeholder="ENTER NAME..."
               required
               maxLength={20}
             />
           </div>
           
           <div>
-            <label className="block font-bold mb-2 text-lg">Class</label>
+            <label className="block font-pixel text-sm mb-2 text-retro-info">CLASS</label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {CLASSES.map((cls) => (
                 <div 
                   key={cls.id}
                   onClick={() => setSelectedClass(cls.id)}
-                  className={`border-2 p-4 cursor-pointer transition-colors ${selectedClass === cls.id ? 'border-gray-900 bg-gray-100' : 'border-gray-300 hover:border-gray-500'}`}
+                  className={`pixel-panel p-4 cursor-pointer transition-colors flex flex-col items-center text-center ${selectedClass === cls.id ? 'border-retro-warning bg-[#221100]' : 'border-gray-700 hover:border-gray-500 bg-[#050505]'}`}
                 >
-                  <h3 className="font-bold text-xl mb-1">{cls.name}</h3>
-                  <p className="text-sm text-gray-600">{cls.desc}</p>
+                  <div className="text-3xl mb-2">{cls.icon}</div>
+                  <h3 className={`font-pixel text-sm mb-2 ${selectedClass === cls.id ? 'text-retro-warning' : 'text-gray-300'}`}>{cls.name}</h3>
+                  <p className="font-vt323 text-xl text-gray-400">{cls.desc}</p>
                 </div>
               ))}
             </div>
@@ -116,9 +117,9 @@ export default function CreateCharacter() {
           <button 
             type="submit" 
             disabled={loading || !name.trim()}
-            className="w-full py-4 mt-4 bg-gray-900 text-white font-bold text-xl hover:bg-gray-800 disabled:opacity-50"
+            className="pixel-btn w-full py-4 mt-4 text-retro-success border-retro-success hover:bg-retro-success hover:text-black font-pixel text-lg disabled:opacity-50"
           >
-            {loading ? 'Forging Fate...' : 'Enter the World'}
+            {loading ? 'INITIALIZING...' : 'ENTER WORLD'}
           </button>
         </form>
       </div>

@@ -43,20 +43,21 @@ export default function GameLayout({ children }) {
   }, [router]);
 
   if (loading) {
-    return <div className="flex min-h-screen items-center justify-center">Loading realm...</div>;
+    return <div className="flex min-h-screen items-center justify-center font-pixel animate-blink text-retro-accent">Loading realm...</div>;
   }
 
   return (
-    <div className="flex flex-col min-h-full">
+    <div className="flex flex-col min-h-full max-w-5xl mx-auto">
       {/* Game Header */}
-      <header className="border-b-2 border-gray-900 pb-4 mb-6 flex justify-between items-end">
+      <header className="pixel-panel mb-6 flex justify-between items-end border-b-4 border-retro-border">
         <div>
-          <h1 className="text-2xl font-bold">The Endless Expanse</h1>
-          <nav className="flex gap-4 mt-2 text-sm font-bold">
-            <Link href="/game/dashboard" className="hover:underline">Dashboard</Link>
-            <Link href="/game/inventory" className="hover:underline">Inventory</Link>
-            <Link href="/game/quests" className="hover:underline">Quests</Link>
-            <Link href="/game/shop" className="hover:underline">Shop</Link>
+          <h1 className="text-2xl font-pixel text-retro-info drop-shadow-md">The Endless Expanse</h1>
+          <nav className="flex gap-4 mt-4 text-sm font-pixel">
+            <Link href="/game/dashboard" className="hover:text-retro-accent hover:translate-y-[2px] transition-transform">Dashboard</Link>
+            <Link href="/game/explore" className="hover:text-retro-accent hover:translate-y-[2px] transition-transform">Map</Link>
+            <Link href="/game/inventory" className="hover:text-retro-accent hover:translate-y-[2px] transition-transform">Inventory</Link>
+            <Link href="/game/quests" className="hover:text-retro-accent hover:translate-y-[2px] transition-transform">Quests</Link>
+            <Link href="/game/shop" className="hover:text-retro-accent hover:translate-y-[2px] transition-transform">Shop</Link>
           </nav>
         </div>
         <button 
@@ -64,14 +65,14 @@ export default function GameLayout({ children }) {
             await supabase.auth.signOut();
             router.push('/');
           }}
-          className="text-sm underline hover:text-gray-600"
+          className="pixel-btn text-retro-warning text-xs"
         >
           Logout
         </button>
       </header>
       
       {/* Game Content */}
-      <main className="flex-1">
+      <main className="flex-1 pixel-panel">
         {children}
       </main>
     </div>

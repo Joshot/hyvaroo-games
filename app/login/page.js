@@ -32,43 +32,43 @@ export default function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="w-full max-w-md p-8 border-2 border-gray-900 bg-white">
-        <h2 className="text-2xl font-bold mb-6 text-center">Adventurer Login</h2>
+      <div className="w-full max-w-md pixel-panel p-8">
+        <h2 className="text-2xl font-pixel text-retro-info mb-6 text-center drop-shadow-md">ADVENTURER LOGIN</h2>
         
-        {error && <div className="mb-4 p-3 bg-red-100 text-red-700 border border-red-300">{error}</div>}
+        {error && <div className="mb-4 p-3 bg-red-900/50 text-retro-accent border-2 border-retro-accent font-pixel text-xs">{error}</div>}
         
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-6">
           <div>
-            <label className="block font-bold mb-1">Email</label>
+            <label className="block font-pixel text-xs mb-2 text-gray-300">EMAIL</label>
             <input 
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              className="w-full p-2 bg-black border-2 border-gray-600 focus:border-retro-info text-white font-vt323 text-xl outline-none"
               required
             />
           </div>
           <div>
-            <label className="block font-bold mb-1">Password</label>
+            <label className="block font-pixel text-xs mb-2 text-gray-300">PASSWORD</label>
             <input 
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              className="w-full p-2 bg-black border-2 border-gray-600 focus:border-retro-info text-white font-vt323 text-xl outline-none"
               required
             />
           </div>
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-2 bg-gray-900 text-white font-bold hover:bg-gray-800 disabled:opacity-50"
+            className="pixel-btn w-full text-retro-success border-retro-success hover:bg-retro-success hover:text-black mt-4 disabled:opacity-50"
           >
-            {loading ? 'Logging in...' : 'Enter the Expanse'}
+            {loading ? 'CONNECTING...' : 'ENTER THE EXPANSE'}
           </button>
         </form>
         
-        <div className="mt-6 text-center text-sm">
-          Don't have an account? <Link href="/register" className="font-bold underline hover:text-gray-600">Register here</Link>
+        <div className="mt-8 text-center font-pixel text-xs text-gray-500">
+          NEW HERE? <Link href="/register" className="text-retro-warning hover:text-white transition-colors">REGISTER</Link>
         </div>
       </div>
     </div>

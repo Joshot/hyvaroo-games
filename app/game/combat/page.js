@@ -93,54 +93,65 @@ export default function Combat() {
     }
   }, [combatResult, currentTurnIdx]);
 
-  if (loading) return <div>Entering combat stance...</div>;
+  if (loading) return <div className="animate-blink font-pixel text-retro-accent">ENTERING BATTLE...</div>;
 
   const isCombatOver = currentTurnIdx >= combatResult?.log.length;
 
   return (
-    <div className="flex flex-col md:flex-row gap-6">
-      <div className="flex-1 border-2 border-gray-900 bg-black text-green-400 p-6 font-mono h-[600px] overflow-y-auto flex flex-col">
-        <h2 className="text-xl font-bold border-b border-green-800 pb-2 mb-4">COMBAT LOG</h2>
+    <div className="flex flex-col h-full gap-4">
+      
+      {/* Top half: Battle Scene */}
+      <div className="flex-1 flex gap-4 min-h-[300px]">
+         <div className="pixel-panel flex-1 flex flex-col justify-end items-start border-retro-info relative overflow-hidden bg-[#0a150a]">
+            {/* Player Avatar */}
+            <div className="text-8xl relative z-10 bottom-4 left-4 drop-shadow-md">👾</div>
+            <div className="absolute top-4 left-4 pixel-panel bg-black/80 border-gray-600 p-2 min-w-[150px]">
+               <div className="font-pixel text-sm text-retro-info mb-1">{character?.name}</div>
+               <div className="font-pixel text-xs text-retro-accent">HP: {combatResult?.finalPlayerHP}</div>
+            </div>
+         </div>
+         
+         <div className="pixel-panel flex-1 flex flex-col justify-end items-end border-retro-accent relative overflow-hidden bg-[#150a0a]">
+            {/* Monster Avatar */}
+            <div className="text-8xl relative z-10 bottom-4 right-4 animate-pulse drop-shadow-md">🐺</div>
+            <div className="absolute top-4 right-4 pixel-panel bg-black/80 border-gray-600 p-2 min-w-[150px] text-right">
+               <div className="font-pixel text-sm text-retro-accent mb-1">{monster?.name}</div>
+               <div className="font-pixel text-xs text-white">DANGER: HIGH</div>
+            </div>
+         </div>
+      </div>
+
+      {/* Bottom half: Combat Log */}
+      <div className="pixel-panel flex-1 bg-[#050505] text-retro-success p-6 font-vt323 text-xl h-[300px] overflow-y-auto flex flex-col relative border-t-8 border-retro-border">
+        <h2 className="text-2xl font-pixel text-white border-b-2 border-gray-700 pb-2 mb-4 drop-shadow-md">BATTLE LOG</h2>
         
         <div className="flex-1 space-y-2">
           {displayedLog.map((line, idx) => (
-            <div key={idx} className={`animate-fade-in ${line.includes('CRITICAL HIT') ? 'text-red-400 font-bold' : ''} ${line.includes('HASIL:') ? 'text-yellow-400 mt-4' : ''}`}>
+            <div key={idx} className={`animate-fade-in ${line.includes('CRITICAL HIT') ? 'text-retro-accent font-bold drop-shadow-[0_0_2px_rgba(255,0,0,0.8)]' : ''} ${line.includes('HASIL:') ? 'text-retro-warning mt-4' : ''}`}>
               {line}
             </div>
           ))}
           {!isCombatOver && (
-            <div className="animate-pulse mt-2">...</div>
+            <div className="animate-blink mt-2">> ...</div>
           )}
         </div>
         
         {isCombatOver && (
-          <div className="mt-8 border-t border-green-800 pt-4 flex gap-4">
+          <div className="mt-8 border-t-2 border-gray-700 pt-4 flex gap-4 absolute bottom-6 right-6">
             <button 
               onClick={() => router.push('/game/explore')}
-              className="px-4 py-2 bg-green-900 text-black font-bold hover:bg-green-800 transition-colors"
+              className="pixel-btn bg-retro-info text-black border-retro-info hover:bg-white text-xs"
             >
-              Continue Exploring
+              > CONTINUE <
             </button>
             <button 
               onClick={() => router.push('/game/dashboard')}
-              className="px-4 py-2 border border-green-900 text-green-400 hover:bg-green-900 hover:text-black transition-colors"
+              className="pixel-btn border-gray-600 text-gray-400 hover:text-white text-xs"
             >
-              Return to Camp
+              > FLEE TO CAMP <
             </button>
           </div>
         )}
-      </div>
-      
-      <div className="w-full md:w-64 space-y-4">
-        <div className="border-2 border-gray-900 p-4 bg-white">
-          <h3 className="font-bold border-b mb-2">{character?.name}</h3>
-          <div className="text-sm">HP: {combatResult?.finalPlayerHP} / ?</div>
-        </div>
-        
-        <div className="border-2 border-red-900 p-4 bg-red-50 text-red-900">
-          <h3 className="font-bold border-b border-red-200 mb-2">{monster?.name}</h3>
-          <div className="text-sm">Danger: High</div>
-        </div>
       </div>
     </div>
   );

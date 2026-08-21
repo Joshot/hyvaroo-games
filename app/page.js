@@ -22,21 +22,23 @@ export default function Home() {
   }, [router]);
 
   if (loading) {
-    return <div className="flex min-h-screen items-center justify-center">Loading...</div>;
+    return <div className="flex min-h-screen items-center justify-center font-pixel animate-blink text-retro-accent">Loading...</div>;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-900 p-8 text-center font-mono">
-      <h1 className="text-4xl font-bold mb-4">The Endless Expanse</h1>
-      <p className="mb-8 max-w-md">An infinite text-based RPG. Create your character and explore the endless procedural world.</p>
-      
-      <div className="flex gap-4">
-        <Link href="/login" className="px-6 py-2 border-2 border-gray-900 bg-gray-900 text-white font-bold hover:bg-gray-800 transition-colors">
-          Login
-        </Link>
-        <Link href="/register" className="px-6 py-2 border-2 border-gray-900 bg-white text-gray-900 font-bold hover:bg-gray-100 transition-colors">
-          Register
-        </Link>
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-black">
+      <div className="pixel-panel flex flex-col items-center p-12">
+        <h1 className="text-4xl font-pixel mb-6 text-retro-info drop-shadow-md">The Endless Expanse</h1>
+        <p className="mb-12 max-w-md text-xl">An infinite 8-bit RPG. Create your character and explore the endless procedural world.</p>
+        
+        <div className="flex gap-6">
+          <Link href="/login" className="pixel-btn text-retro-success">
+            Login
+          </Link>
+          <Link href="/register" className="pixel-btn text-retro-warning">
+            Register
+          </Link>
+        </div>
       </div>
     </div>
   );
